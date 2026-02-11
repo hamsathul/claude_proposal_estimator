@@ -1,0 +1,9 @@
+{
+  "name": "proposal-estimator",
+  "version": "0.1.0",
+  "description": "Analyze client RFP/BOQ packages, assess staffing gaps against company capabilities, and generate complete commercial proposals with pricing estimates",
+  "author": {
+    "name": "NCO"
+  },
+  "keywords": ["proposal", "estimator", "boq", "rfp", "consultancy", "pricing", "staffing"]
+}

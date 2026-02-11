@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Generated outputs (these are per-project, not part of the plugin source)
+*_Analysis_Summary.md
+*_Gap_Analysis_Report.md
+*_Cost_Estimate*.xlsx
+*_Proposal_Package/

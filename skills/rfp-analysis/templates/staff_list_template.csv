@@ -1,0 +1,11 @@
+Employee_ID,Name,Current_Role,Discipline,Experience_Years,Qualifications,Certifications,Current_Assignment,Availability,Location,Notes
+E001,Ahmed Khan,Senior Project Manager,Project Management,18,MSc Civil Engineering,PMP,Project Alpha - ends Mar 2026,Available Apr 2026,Dubai UAE,GCC experience 12 years
+E002,John Smith,Senior Civil Engineer,Civil,14,BSc Civil Engineering,,Project Beta,Available,Abu Dhabi UAE,Specializes in water infrastructure
+E003,Sara Ali,Mechanical Engineer,Mechanical,8,BSc Mechanical Engineering,,Bench,Available Now,Dubai UAE,Pipeline and pump station experience
+E004,Raj Patel,Senior Electrical Engineer,Electrical,12,BSc Electrical Engineering,,Project Gamma - ends Jun 2026,Available Jul 2026,Dubai UAE,Substation and power distribution
+E005,Maria Lopez,Planning Engineer,Planning,10,BSc Civil Engineering,Primavera P6,Project Alpha,Available Apr 2026,Dubai UAE,
+E006,Omar Hassan,HSE Engineer,HSE,9,BSc Engineering,NEBOSH IGC / IOSH,Bench,Available Now,Fujairah UAE,
+E007,Li Wei,QA/QC Engineer,Quality,7,BSc Mechanical Engineering,ISO 9001 Lead Auditor,Project Delta,Available Mar 2026,Dubai UAE,
+E008,Fatima Al Zahra,Quantity Surveyor,Commercial,8,BSc Quantity Surveying,,Bench,Available Now,Dubai UAE,Water and power project experience
+E009,David Brown,Senior Structural Engineer,Structural,15,MSc Structural Engineering,,Remote - UK office,Needs relocation,London UK,Would need UAE visa
+E010,Anil Kumar,SCADA Engineer,I&C SCADA,11,BSc Instrumentation Engineering,,Project Epsilon,Available May 2026,Abu Dhabi UAE,SCADA and fiber optic experience

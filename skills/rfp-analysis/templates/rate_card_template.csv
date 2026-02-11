@@ -1,0 +1,8 @@
+Category_Code,Category_Name,Section,Hourly_Rate_AED,Description
+PM-SE,PM Senior Engineer,Project Management,750,Project Managers and Design Leads
+PM-E,PM Engineer,Project Management,400,Planning Engineers and Project Coordinators
+ENG-SE,Engineering Senior Engineer,Engineering,250,Senior discipline engineers (Civil / Structural / Mechanical / Electrical / Hydraulic / I&C)
+ENG-E,Engineering Engineer,Engineering,200,Mid-level engineers / Resident Engineers / QS / HSE Engineers / QA-QC
+ENG-JE,Engineering Junior Engineer,Engineering,100,Assistant Engineers / HSE Officers / Junior Inspectors
+ENG-SD,Engineering Senior Designer,Engineering,120,Lead CAD-BIM designers / Senior Draftsmen
+ENG-D,Engineering Designer,Engineering,100,CAD Operators / Draftsmen
