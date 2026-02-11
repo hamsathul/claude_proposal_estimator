@@ -105,7 +105,7 @@ Present findings as a structured summary with clear sections. Use tables for sta
 
 ## Organization Capabilities
 
-When performing compliance checks or gap analysis, read the company's organization capabilities profile. Look for `org_capabilities.*` or `company_profile.*` in the user's folder. If not found, provide the template from `templates/org_capabilities_template.md` for the user to fill in.
+When performing compliance checks or gap analysis, read the company's organization capabilities profile. Look for `org_capabilities.*` or `company_profile.*` in the user's folder or the `setup/` folder. If not found, provide the template from `${CLAUDE_PLUGIN_ROOT}/setup/org_capabilities_template.md` for the user to fill in.
 
 The capabilities profile provides:
 - **Discipline coverage** — which disciplines the company delivers as core, capable, via partners, or not at all
@@ -120,4 +120,4 @@ The capabilities profile provides:
 For detailed rate mapping and staff categorization patterns, read:
 - `references/discipline-mapping.md` — standard discipline-to-role mapping
 - `references/qualification-matrix.md` — typical qualification requirements by role level
-- `templates/org_capabilities_template.md` — organization capabilities profile template
+- `${CLAUDE_PLUGIN_ROOT}/setup/org_capabilities_template.md` — organization capabilities profile template

@@ -24,25 +24,21 @@ This plugin automates the end-to-end proposal workflow for engineering consultan
 
 ## Setup
 
-Before using the plugin, prepare three files in your working folder:
+Before using the plugin, prepare three files in the `setup/` folder:
 
-### Organization Capabilities Profile (Markdown)
+| File | Description |
+|------|-------------|
+| `setup/org_capabilities.md` | Company profile, discipline capabilities, certifications, project references, and differentiators |
+| `setup/rate_card.csv` | Billing rates by staff category (hourly rates in AED) |
+| `setup/staff_list.csv` | Current team members, disciplines, experience, and availability |
 
-Your company's overall capabilities, experience, and certifications. This file drives the compliance check, company overview in proposals, and "Why Choose Us" content. It covers:
+Each file includes a ready-to-fill template. Open them in the `setup/` folder and replace the sample data with your company's details.
 
-- Company profile (name, offices, headcount, classification)
-- Discipline capabilities rated as CORE / CAPABLE / PARTNER / NONE
-- Sector experience with completed project counts
-- Key project references (5-10 relevant projects for proposals)
-- Certifications and accreditations (ISO, ADM, etc.)
-- Software and tools inventory
-- Pre-qualified subcontractor network
-- Current capacity (active projects, bench staff, mobilization timelines)
-- Company differentiators and known limitations
+### Organization Capabilities Profile
 
-A comprehensive template is included at `skills/rfp-analysis/templates/org_capabilities_template.md`. Copy it to your folder as `org_capabilities.md` and fill in your details.
+Drives the compliance check, company overview in proposals, and "Why Choose Us" content. Covers company profile, discipline capabilities (CORE / CAPABLE / PARTNER / NONE), sector experience, project references, certifications, software, subcontractor network, capacity, and differentiators.
 
-### Rate Card (CSV or Excel)
+### Rate Card
 
 Your company billing rates. Example columns:
 
@@ -56,9 +52,7 @@ Your company billing rates. Example columns:
 | ENG-SD | Senior Designer | Engineering | 120 |
 | ENG-D | Designer | Engineering | 100 |
 
-A template is included in the plugin at `skills/rfp-analysis/templates/rate_card_template.csv`.
-
-### Staff List (CSV or Excel)
+### Staff List
 
 Your current team and availability. Example columns:
 
@@ -67,12 +61,10 @@ Your current team and availability. Example columns:
 | Ahmed Khan | Senior PM | Project Management | 18 | Available Apr 2026 |
 | John Smith | Senior Civil Eng | Civil | 14 | Available |
 
-A template is included at `skills/rfp-analysis/templates/staff_list_template.csv`.
-
 ## Typical Usage
 
 1. Place the client's RFP documents (PDFs, Excel BOQs, Word files) in your folder
-2. Add your `org_capabilities.md`, `rate_card.csv`, and `staff_list.csv` to the same folder
+2. Fill in your company data in the `setup/` folder (`org_capabilities.md`, `rate_card.csv`, `staff_list.csv`)
 3. Run `/analyze-rfp` to extract scope requirements
 4. Run `/gap-analysis` to check team coverage, compliance, and subcontractor strategy
 5. Run `/estimate-proposal` to calculate pricing

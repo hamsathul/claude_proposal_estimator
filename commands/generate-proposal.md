@@ -13,7 +13,7 @@ This command builds on previous outputs. Check that these exist in the user's fo
 - `Proposal_Cost_Estimate_AED.xlsx` (from /estimate-proposal)
 - Organization capabilities file (`org_capabilities.*` or `company_profile.*`) — for company overview, project references, certifications, and differentiators
 
-If analysis files are missing, inform the user which commands to run first. If the capabilities file is missing, ask the user or use the template at `${CLAUDE_PLUGIN_ROOT}/skills/rfp-analysis/templates/org_capabilities_template.md`.
+If analysis files are missing, inform the user which commands to run first. If the capabilities file is missing, ask the user or use the template at `${CLAUDE_PLUGIN_ROOT}/setup/org_capabilities_template.md`.
 
 ## Steps
 

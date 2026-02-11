@@ -9,7 +9,7 @@ Compare the staffing requirements from the RFP analysis against the company's cu
 
 1. Read the RFP analysis summary. Look for `RFP_Analysis_Summary.md` in the user's folder, or ask the user to point to it.
 
-2. Read the company's **organization capabilities profile**. Look for files named like `org_capabilities.*`, `company_profile.*`, or `capabilities.*` in the user's folder (Markdown, Excel, CSV, or any format). If not found, ask the user. The template is at `${CLAUDE_PLUGIN_ROOT}/skills/rfp-analysis/templates/org_capabilities_template.md`.
+2. Read the company's **organization capabilities profile**. Look for files named like `org_capabilities.*`, `company_profile.*`, or `capabilities.*` in the user's folder or `setup/` folder (Markdown, Excel, CSV, or any format). If not found, ask the user. The template is at `${CLAUDE_PLUGIN_ROOT}/setup/org_capabilities_template.md`.
 
    From the capabilities file, extract:
    - Discipline capability levels (CORE / CAPABLE / PARTNER / NONE)
