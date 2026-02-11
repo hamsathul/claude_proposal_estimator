@@ -1,0 +1,39 @@
+{
+  "name": "proposal-estimator",
+  "owner": {
+    "name": "NCO",
+    "email": ""
+  },
+  "metadata": {
+    "description": "Analyze client RFP/BOQ packages, assess staffing gaps, and generate commercial proposals"
+  },
+  "plugins": [
+    {
+      "name": "proposal-estimator",
+      "source": "./",
+      "description": "Analyze client RFP/BOQ packages, assess staffing gaps against company capabilities, and generate complete commercial proposals with pricing estimates",
+      "author": {
+        "name": "NCO"
+      },
+      "homepage": "https://github.com/hamsathul/claude_proposal_estimator",
+      "repository": "https://github.com/hamsathul/claude_proposal_estimator",
+      "keywords": [
+        "proposal",
+        "estimator",
+        "boq",
+        "rfp",
+        "consultancy",
+        "pricing",
+        "staffing"
+      ],
+      "category": "workflow",
+      "tags": [
+        "proposal",
+        "estimator",
+        "rfp",
+        "consultancy",
+        "pricing"
+      ]
+    }
+  ]
+}
