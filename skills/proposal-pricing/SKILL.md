@@ -17,7 +17,7 @@ Calculate commercial proposal amounts for engineering consultancy services based
 
 Before pricing, ensure the following are available:
 
-1. **Rate Card**: Read from the company's rate card file (Excel or CSV in the user's folder). Expected columns: Category, Hourly Rate (AED), Description.
+1. **Rate Card**: Read from the company's rate card file (Excel or CSV in the user's folder). Expected columns: Category, Hourly Rate (~~currency), Description.
 2. **Staff Requirements**: Output from the RFP analysis (positions, man-months, rate categories). **Each position must carry its source reference** (file name + page/sheet/row from the original RFP documents).
 3. **Gap Analysis**: Which positions are in-house, new hire, or third-party. **Source references must be preserved** from the RFP Analysis Summary.
 
@@ -45,7 +45,7 @@ The standard rate card has two sections:
 ### Step 1: Monthly Rate Conversion
 ```
 Monthly Rate = Hourly Rate x Standard Hours per Month
-Standard Hours per Month = 176 (22 working days x 8 hours)
+Standard Hours per Month = ~~working_hours_per_month (~~working_days_per_month working days x 8 hours)
 ```
 
 ### Step 2: Position Cost Calculation
@@ -63,22 +63,22 @@ Group positions by consultancy stage:
 ### Step 4: Third-Party Markup
 For positions identified as third-party/subcontract in gap analysis:
 ```
-Third-Party Cost = Base Rate x Third-Party Markup Factor (typically 1.10-1.15)
+Third-Party Cost = Base Rate x Third-Party Markup Factor (~~third_party_markup)
 ```
 
 ### Step 5: Grand Total
 ```
 Subtotal = Stage A + Stage B + Stage C + Stage D
-VAT = Subtotal x 5%
-Grand Total = Subtotal + VAT
+~~tax_name = Subtotal x ~~tax_rate
+Grand Total = Subtotal + ~~tax_name
 ```
 
 ## Important Notes
 
 - Hourly rates are **billing rates** (all-inclusive of salary, benefits, overhead, and profit)
 - Do NOT add additional overhead or profit markup on top of billing rates
-- VAT at 5% is applied per UAE Federal Tax Authority requirements
-- All amounts in AED (UAE Dirhams)
+- ~~tax_name at ~~tax_rate is applied per ~~tax_authority requirements
+- All amounts in ~~currency
 - Rates are firm and fixed — no escalation clauses
 - For competitive bids, consider if any rates can be slightly reduced
 

@@ -94,7 +94,7 @@ Extract from BOQ and annexures:
 - Warranty period
 
 ### 6. Compliance Requirements
-- Required certifications (ISO, ADM classification, etc.)
+- Required certifications (ISO, ~~classification_authority classification, etc.)
 - NOC and approval responsibilities
 - Mandatory local presence (UAE office, staff based in-country)
 - Past project reference requirements
@@ -173,7 +173,7 @@ When performing compliance checks or gap analysis, read the company's organizati
 The capabilities profile provides:
 - **Discipline coverage** — which disciplines the company delivers as core, capable, via partners, or not at all
 - **Sector experience** — completed projects by sector for reference matching
-- **Certifications** — ISO, ADM, and other accreditations for compliance verification
+- **Certifications** — ISO, ~~classification_authority, and other accreditations for compliance verification
 - **Subcontractor network** — pre-qualified partners for non-core disciplines
 - **Current capacity** — bench staff, active projects, mobilization timelines
 - **Company differentiators** — strengths for proposal content

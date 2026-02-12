@@ -51,11 +51,11 @@ Map each required position to the appropriate rate category using the discipline
 ### 5. Calculate Costs
 
 Calculate costs:
-   - Convert hourly rates to monthly: Rate x 176 hours
+   - Convert hourly rates to monthly: Rate x ~~working_hours_per_month hours
    - For each position: Monthly Rate x Months x Quantity
    - Group by stage (Tender Prep, Design Review, Site Supervision, Warranty)
-   - Apply third-party markup (10-15%) for subcontracted positions from gap analysis
-   - Calculate subtotal, VAT (5%), and grand total
+   - Apply third-party markup (~~third_party_markup) for subcontracted positions from gap analysis
+   - Calculate subtotal, ~~tax_name (~~tax_rate), and grand total
 
 ### 6. Create Excel Workbook
 

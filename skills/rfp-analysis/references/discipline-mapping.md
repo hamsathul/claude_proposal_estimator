@@ -1,6 +1,6 @@
 # Discipline-to-Role Mapping
 
-Standard mapping of engineering disciplines to staff positions, rate categories, and typical deployment durations for infrastructure consultancy projects in the GCC region.
+Standard mapping of engineering disciplines to staff positions, rate categories, and typical deployment durations for infrastructure consultancy projects in the ~~region region.
 
 ## Rate Categories
 

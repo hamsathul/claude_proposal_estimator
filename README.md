@@ -4,7 +4,7 @@ Analyze client RFP/BOQ packages, assess staffing gaps against company capabiliti
 
 ## What It Does
 
-This plugin automates the end-to-end proposal workflow for engineering consultancy firms bidding on infrastructure projects (water, power, roads, buildings) in the GCC region.
+This plugin automates the end-to-end proposal workflow for engineering consultancy firms bidding on infrastructure projects (water, power, roads, buildings) in the ~~region region.
 
 **Every extracted item is traced back to its source** — file name, page number, sheet, and row — so you can verify any finding against the original RFP documents.
 
@@ -34,7 +34,7 @@ This plugin automates the end-to-end proposal workflow for engineering consultan
 | File to Create | Template Provided | Description |
 |---------------|-------------------|-------------|
 | `setup/org_capabilities.md` | `org_capabilities_template.md` | Copy the template, fill in your company profile, disciplines, certifications, project references, and differentiators |
-| `setup/rate_card.csv` | (includes sample rates) | Replace sample rates with your actual billing rates by staff category (hourly, AED) |
+| `setup/rate_card.csv` | (includes sample rates) | Replace sample rates with your actual billing rates by staff category (hourly, ~~currency) |
 | `setup/staff_list.csv` | (includes sample staff) | Replace sample staff with your actual team — roles, disciplines, experience, availability |
 
 ### Data Files (Provide Your Own Exports)
@@ -142,10 +142,10 @@ The plugin maps positions to these standard rate categories:
 
 ## Pricing Method
 
-- Monthly rate = Hourly rate x 176 hours (22 days x 8 hours)
+- Monthly rate = Hourly rate x ~~working_hours_per_month hours (~~working_days_per_month days x 8 hours)
 - Rates are all-inclusive billing rates (no additional overhead/profit markup)
-- VAT at 5% per UAE Federal Tax Authority
-- Third-party positions can include a 10-15% markup
+- ~~tax_name at ~~tax_rate per ~~tax_authority
+- Third-party positions can include a ~~third_party_markup markup
 
 ## Source Referencing
 

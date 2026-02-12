@@ -1,6 +1,6 @@
 # Qualification Requirements Matrix
 
-Standard minimum qualification and experience requirements for engineering consultancy positions in GCC water, power, and infrastructure projects.
+Standard minimum qualification and experience requirements for engineering consultancy positions in ~~region water, power, and infrastructure projects.
 
 ## Senior Engineer Level (ENG-SE / PM-SE)
 
@@ -10,7 +10,7 @@ Standard minimum qualification and experience requirements for engineering consu
 | Total Experience | 10-15 years minimum |
 | Relevant Experience | 5+ years with consultant in relevant field |
 | Certifications | PMP preferred for PM roles; discipline certifications valued |
-| Regional | GCC experience strongly preferred |
+| Regional | ~~region experience strongly preferred |
 | Special | Design software proficiency, familiarity with local codes/standards |
 
 ## Engineer Level (ENG-E / PM-E)
@@ -20,7 +20,7 @@ Standard minimum qualification and experience requirements for engineering consu
 | Education | BSc/BE minimum, post-graduation preferred |
 | Total Experience | 6-10 years minimum |
 | Relevant Experience | 4-5 years in similar projects |
-| Regional | GCC experience preferred |
+| Regional | ~~region experience preferred |
 | Special | Site management capability, leadership qualities |
 
 ## Junior Engineer Level (ENG-JE)

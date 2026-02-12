@@ -173,9 +173,9 @@ Using the scope items identified in Step 3, estimate the team composition and du
 
 1. For each scope item, determine which discipline roles are needed and for how many months (use the RFP Analysis Summary if available, or estimate from comparable projects)
 2. Apply the company's billing rates from `${CLAUDE_PLUGIN_ROOT}/setup/rate_card.csv`:
-   - Hourly rate × 176 hours = monthly rate
+   - Hourly rate × ~~working_hours_per_month hours = monthly rate
    - Monthly rate × months × quantity = line item cost
-3. Add third-party/subcontractor costs for any PARTNER/NONE disciplines (from org_capabilities.md) at a 10–15% markup
+3. Add third-party/subcontractor costs for any PARTNER/NONE disciplines (from org_capabilities.md) at a ~~third_party_markup markup
 4. Sum all line items
 
 Present the staffing model:
@@ -186,7 +186,7 @@ Present the staffing model:
 | 2 | Senior Civil Engineer | Civil | ENG-SE | 44,000 | 8 | 1 | 352,000 |
 | ... | ... | ... | ... | ... | ... | ... | ... |
 | | | | | | | **Subtotal** | **X** |
-| | | | | | | **VAT (5%)** | **X** |
+| | | | | | | **~~tax_name (~~tax_rate)** | **X** |
 | | | | | | | **Total (Method 1)** | **X** |
 
 #### 7b. Method 2 — Internal Cost + Overhead Multiplier

@@ -86,7 +86,7 @@ Provide a summary count:
 ### 7. Compliance Check
 
 **Compliance Check** — Compare organization capabilities against RFP requirements. **Include source references for every RFP requirement**:
-   - Required certifications (ISO, ADM) vs. held certifications
+   - Required certifications (ISO, ~~classification_authority) vs. held certifications
    - Required sector experience vs. completed projects
    - Required software/tools vs. available licenses
    - Minimum company classification vs. current classification
@@ -99,7 +99,7 @@ Provide a summary count:
    |-------------|----------|-------------|--------|------------|
    | ISO 9001 | Required | Yes, expires Dec 2026 | COMPLIANT | 📄 [TOR.pdf, p.8] |
    | Water sector experience | 5 projects min | 8 projects completed | COMPLIANT | 📄 [TOR.pdf, p.12] |
-   | ADM Category A | Required | Category B | GAP — needs upgrade | 📄 [Special_Conditions.docx, Section 2.1] |
+   | ~~classification_authority Category A | Required | Category B | GAP — needs upgrade | 📄 [Special_Conditions.docx, Section 2.1] |
 
 ### 8. Subcontractor Strategy
 
@@ -112,7 +112,7 @@ Provide a summary count:
 
 Flag any risks:
    - Positions where the client requires interviews (all staff subject to client approval)
-   - Positions requiring specific GCC experience
+   - Positions requiring specific ~~region experience
    - Mobilization timeline constraints
    - UAE office requirement compliance
 
