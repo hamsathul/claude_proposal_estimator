@@ -15,14 +15,15 @@ Before starting portfolio analysis, check for the required data files. **Ask the
 |------|---------|----------|
 | Projects export (`.xlsx`) | Active/past projects with financials | **Yes** |
 | Proposals export (`.xlsx`) | Submitted proposals with win/loss status | **Yes** |
-| `RFP_Analysis_Summary.md` | Scope items for matching against portfolio | Optional (enables scope matching) |
+| `RFP_Analysis_Summary.md` | Scope items for matching against portfolio | **Yes** — run `/analyze-rfp` first if missing |
+| RFP documents (PDFs, Excel, Word) | Needed if `/analyze-rfp` has not been run yet | **Yes** (if no RFP Analysis exists) |
 
 **Check procedure:**
 1. Look for a **projects export file** in the user's working folder first: files named like `all-projects*.xlsx`, `projects*.xlsx`, or `project_export*.xlsx`. If not found, tell the user: *"Please provide your projects export file (Excel). See the template at `setup/projects_template.xlsx` for the expected format."*
 2. Look for a **proposals export file** in the user's working folder: files named like `proposals*.xlsx`, `proposal_export*.xlsx`, or `bids*.xlsx`. If not found, tell the user: *"Please provide your proposals export file (Excel). See the template at `setup/proposals_template.xlsx` for the expected format."*
-3. Optionally check for `RFP_Analysis_Summary.md` in the user's folder (from `/analyze-rfp`). If found, enable scope matching. If not, inform the user: *"No RFP Analysis found — running portfolio analysis without scope matching. Run `/analyze-rfp` first if you want scope-to-portfolio matching."*
+3. Check for `RFP_Analysis_Summary.md` in the user's folder (from `/analyze-rfp`). **If not found, run `/analyze-rfp` automatically before continuing** — the scope breakdown it produces is essential for accurate scope-to-portfolio matching, comparable proposal filtering, and the independent cost estimate. Look for RFP documents (PDFs, Excel, Word) in the user's folder to feed into the analysis. If no RFP documents are found either, tell the user: *"Please place your RFP/BOQ documents in the folder so I can run the RFP analysis first."*
 
-**Do not proceed until both the projects and proposals export files are available.**
+**Do not proceed until the projects export, proposals export, and RFP_Analysis_Summary.md are all available.**
 
 ### 1. Locate and Validate Input Files
 
