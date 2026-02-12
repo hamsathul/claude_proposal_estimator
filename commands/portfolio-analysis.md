@@ -113,112 +113,161 @@ Cross-reference clients between projects and proposals:
 | Siemens Energy | 2 | 0 | 500,000 | 3 | 1 | 33% | REPEAT CLIENT |
 | EMC | 5 | 1 | 2,200,000 | 4 | 0 | 0% | ACTIVE — NO WINS |
 
-### 5. Win/Loss Analysis
+### 5. Comparable Win/Loss Analysis
 
-Provide overall proposal pipeline statistics:
+**Do NOT analyze the full proposal pipeline.** Filter down to only proposals that are comparable to this RFQ's scope, then analyze that filtered set.
 
-**Summary:**
-- Total proposals submitted: X
-- Won: X (Y% win rate)
+#### 5a. Build the Comparable Set
+
+Using the scope keywords identified in Step 3, filter the proposals export to only those whose **Project Title** matches the same keywords. Also consider:
+- Sector similarity (e.g., if the RFQ is for power infrastructure, include power/substation/solar proposals but exclude unrelated sectors like residential villas)
+- Service type similarity (e.g., if the RFQ is for design consultancy, include design/engineering proposals but exclude pure supervision or PMC proposals)
+- Scale similarity (exclude proposals that are 10x+ larger or smaller unless there's a direct scope match)
+
+List every comparable proposal with its status:
+
+| # | Proposal No | Project Title | Client | Estimated Value (AED) | Status | Scope Match |
+|---|------------|---------------|--------|----------------------:|--------|-------------|
+| 1 | T-008-1-2026 | 132kV GIS Substation TRANSCO | TRANSCO | 450,000 | Submitted | Substation Design |
+| 2 | T-012-2026 | ADDC Civil Package | ADDC | 275,000 | Won | Civil Works |
+| 3 | T-019-2025 | MEP Design Al Reem | Developer LLC | 1,600,000 | Lost | Building Services |
+
+#### 5b. Comparable Win/Loss Statistics
+
+From the filtered set only:
+- Comparable proposals found: X
+- Won: X (win rate: Y%)
 - Lost: X
 - Pending/Submitted: X
-- Cancelled: X
-- Total estimated value of won proposals: AED X
-- Total estimated value of submitted (pending) proposals: AED X
-- Average proposal value: AED X
+- Average value of won proposals: AED X
+- Average value of lost proposals: AED X
+- Value range of won proposals: AED X – AED Y
 
-**Won Proposals Detail** (with source references if RFP scope is available):
+#### 5c. Win/Loss Insight
 
-| # | Proposal No | Project Title | Client | Estimated Value (AED) | Matching RFP Scope | RFP Source |
-|---|------------|---------------|--------|----------------------:|--------------------|-----------:|
-| 1 | T-002-2026 | ADQ Solar/PV 2.25GW... | Siemens Energy | 0 | Electrical, Substation | 📄 [TOR.pdf, p.12] |
+Analyze what distinguishes won vs. lost proposals in this comparable set:
+- Were wins typically smaller or larger in value?
+- Were wins concentrated with specific clients or sectors?
+- What is the "sweet spot" value range where the company wins?
+- Flag if the current RFQ's likely value falls inside or outside the winning range
 
-### 6. Project Financial Performance
+This is the key bid intelligence — it tells the user where they actually compete successfully.
 
-Analyze active and completed projects:
+### 6. Portfolio Baseline (Brief)
 
-**By Status:**
+Provide a **one-paragraph** summary of the portfolio's financial health — just enough to feed into the cost estimate. Include only:
+- Average profit % across active projects (from projects export)
+- Median cost per hour (Actual Costs ÷ Actual Hours across projects with valid data)
+- Current utilization rate (Actual Hours ÷ Contract Hours)
 
-| Status | Count | Total Contract Value (AED) | Total Actual Costs (AED) | Avg Profit % |
-|--------|------:|---------------------------:|-------------------------:|-------------:|
-| In-Progress | X | X | X | X% |
-| Completed | X | X | X | X% |
-| Blocked | X | X | X | X% |
+Do NOT include full project breakdowns, top-10 lists, or underperformer tables. This section exists solely to provide inputs for Section 7.
 
-**Top 10 Projects by Contract Value:**
+### 7. Independent Cost Estimate & Bid Recommendation
 
-| # | Project | Client | Contract Value | Actual Costs | Profit % | Status |
-|---|---------|--------|---------------:|-------------:|---------:|--------|
+**This is not about modeling scenarios around an existing bid.** Build an independent bottom-up estimate of what this RFQ should cost, then recommend a bid range.
 
-**Underperforming Projects** (negative profit or profit < 5%):
+#### 7a. Method 1 — Rate Card Staffing Model
 
-| # | Project | Client | Contract Value | Actual Costs | Profit % | Over/Under Hours |
-|---|---------|--------|---------------:|-------------:|---------:|-----------------:|
+Using the scope items identified in Step 3, estimate the team composition and duration this RFQ requires, then price it using the company's own rate card.
 
-### 7. Profitability Scenario Modeling
+1. For each scope item, determine which discipline roles are needed and for how many months (use the RFP Analysis Summary if available, or estimate from comparable projects)
+2. Apply the company's billing rates from `${CLAUDE_PLUGIN_ROOT}/setup/rate_card.csv`:
+   - Hourly rate × 176 hours = monthly rate
+   - Monthly rate × months × quantity = line item cost
+3. Add third-party/subcontractor costs for any PARTNER/NONE disciplines (from org_capabilities.md) at a 10–15% markup
+4. Sum all line items
 
-Using the RFP staffing and pricing data (if available from `/estimate-proposal`), or the current portfolio average, model these scenarios:
+Present the staffing model:
 
-**Scenario A — Current Portfolio Average**
-Use the actual average profit % from the projects file as the baseline.
+| # | Role | Discipline | Rate Category | Monthly Rate (AED) | Months | Qty | Line Total (AED) |
+|---|------|-----------|--------------|-------------------:|-------:|----:|-----------------:|
+| 1 | Project Manager | PM | PM-SE | 132,000 | 12 | 1 | 1,584,000 |
+| 2 | Senior Civil Engineer | Civil | ENG-SE | 44,000 | 8 | 1 | 352,000 |
+| ... | ... | ... | ... | ... | ... | ... | ... |
+| | | | | | | **Subtotal** | **X** |
+| | | | | | | **VAT (5%)** | **X** |
+| | | | | | | **Total (Method 1)** | **X** |
 
-**Scenario B — 10% Target Profit Margin**
-```
-Required Revenue = Total Estimated Costs / (1 - 0.10)
-Profit = Revenue - Costs
-```
+#### 7b. Method 2 — Internal Cost + Overhead Multiplier
 
-**Scenario C — 15% Target Profit Margin**
-```
-Required Revenue = Total Estimated Costs / (1 - 0.15)
-Profit = Revenue - Costs
-```
+Use the portfolio's actual cost data to estimate from the bottom up:
 
-**Scenario D — Contract Win Scenarios**
-Model outcomes based on different win rates for pending proposals:
+1. Calculate the **median cost per hour** from the projects export (Actual Costs ÷ Actual Hours, filtering to projects with valid data)
+2. Estimate total hours for this RFQ (from the staffing model in 7a, or from comparable project hours)
+3. Apply an overhead multiplier range:
+   - **2.0x** = cost recovery + modest margin (competitive bid)
+   - **2.5x** = standard consultancy markup
+   - **3.0x** = premium/complex project markup
 
-| Scenario | Win Rate | Proposals Won | New Revenue (AED) | At 10% Profit | At 15% Profit | At Current Avg Profit |
-|----------|---------|:-------------:|------------------:|--------------:|--------------:|---------------------:|
-| Conservative | 10% | X | X | X | X | X |
-| Moderate | 25% | X | X | X | X | X |
-| Optimistic | 40% | X | X | X | X | X |
-| Best Case | 60% | X | X | X | X | X |
+| Multiplier | Estimated Hours | Cost/Hr (AED) | Base Cost (AED) | Bid Amount (AED) |
+|-----------|----------------:|--------------:|----------------:|-----------------:|
+| 2.0x (competitive) | X | X | X | X |
+| 2.5x (standard) | X | X | X | X |
+| 3.0x (premium) | X | X | X | X |
 
-**Scenario E — Capacity Utilization**
-Using the projects data (Contract Hours vs Actual Hours):
-- Current utilization rate
-- Revenue per hour
-- Projected revenue at 80%, 90%, 100% utilization
-- Impact on profit at each utilization level
+#### 7c. Method 3 — Portfolio Revenue Benchmarking
 
-### 8. RFP-Specific Profitability (if estimate available)
+Use comparable completed projects to benchmark:
 
-If `Proposal_Cost_Estimate_AED.xlsx` exists (from `/estimate-proposal`), create a scenario analysis specific to this RFP:
+1. From the projects matched in Step 3 (scope-similar projects), calculate:
+   - Median contract value
+   - Median revenue per hour (Contract Value ÷ Contract Hours)
+   - Median billing rate per staff-month
+2. Apply the median billing rate to the estimated team composition from 7a
 
-| Scenario | Bid Amount (AED) | Estimated Costs (AED) | Profit (AED) | Profit % | Notes |
-|----------|----------------:|---------------------:|--------------:|---------:|-------|
-| At Cost | X | X | 0 | 0% | Break-even point |
-| 10% Margin | X | X | X | 10% | Conservative bid |
-| 15% Margin | X | X | X | 15% | Standard target |
-| 20% Margin | X | X | X | 20% | Premium bid |
-| Match Portfolio Avg | X | X | X | X% | Aligned with current performance |
-| Competitive (5%) | X | X | X | 5% | Aggressive to win |
+| Metric | Value |
+|--------|------:|
+| Comparable projects used | X |
+| Median contract value (AED) | X |
+| Median revenue per hour (AED) | X |
+| Estimated hours for this RFQ | X |
+| **Benchmark estimate (AED)** | **X** |
 
-### 9. Save Output
+#### 7d. Cross-Reference with Comparable Proposals
+
+Compare the three estimates against the comparable won/lost proposal values from Section 5:
+
+| Method | Estimate (AED) | vs. Avg Won Value | vs. Avg Lost Value | Signal |
+|--------|---------------:|------------------:|-------------------:|--------|
+| Method 1: Rate card staffing | X | +/-X% | +/-X% | Within/above/below winning range |
+| Method 2: Internal cost × 2.5x | X | +/-X% | +/-X% | Within/above/below winning range |
+| Method 3: Portfolio benchmark | X | +/-X% | +/-X% | Within/above/below winning range |
+| Comparable won avg | X | — | — | Reference |
+| Comparable lost avg | X | — | — | Reference |
+
+#### 7e. Recommended Bid Range
+
+Based on all three methods and the comparable win/loss data, recommend:
+
+- **Floor** (minimum bid): The lowest of the three estimates, but not below the Method 2 cost-recovery (2.0x) level
+- **Target** (recommended bid): The convergence point of the three methods, adjusted toward the "winning range" from comparable proposals
+- **Ceiling** (premium bid): The highest justifiable amount — above this, the win probability drops based on comparable lost proposal values
+
+| | Amount (AED) | Basis |
+|--|-------------:|-------|
+| **Floor** | X | Cost recovery — competitive but thin margin |
+| **Target** | X | Best estimate — balances margin and win probability |
+| **Ceiling** | X | Premium — justifiable for strong scope match but higher risk of loss |
+
+**Bid recommendation narrative**: Write 2-3 sentences explaining the recommended target amount, why it's positioned where it is relative to the comparable won/lost values, and any key risk factors (e.g., "The target of AED X is positioned 15% above the average comparable win value, reflecting the additional SCADA scope. However, comparable losses averaged AED Y, suggesting bids above AED Z face significantly lower win probability.")
+
+### 8. Save Output
 
 Save the full analysis as `Portfolio_Analysis_Report.md` in the user's folder.
 
 **Include source references throughout:**
 - Every scope match references the RFP source document (📄 [filename, page])
 - Every project/proposal reference includes the source file and row: 📄 [all-projects.xlsx, Row X] or 📄 [proposals.xlsx, Row X]
+- Every comparable proposal references its row in the proposals export
 - Include a Source Document Index at the top
 
-### 10. Present Summary
+### 9. Present Summary
 
 Present a concise summary to the user highlighting:
-- Key scope matches (strong/weak areas)
-- Win rate and pipeline health
-- Top profitability insights
-- Recommended bid strategy based on the scenarios
+- **Scope coverage**: How many scope items have STRONG/MODERATE/LIMITED/NONE coverage
+- **Comparable win intelligence**: Win rate on similar proposals, winning value range
+- **Independent cost estimate**: The three method estimates and where they converge
+- **Recommended bid range**: Floor / Target / Ceiling with the reasoning
+- **Key risks**: Scope gaps (NONE items), areas where the bid is outside winning range, capacity concerns
 
 $ARGUMENTS
