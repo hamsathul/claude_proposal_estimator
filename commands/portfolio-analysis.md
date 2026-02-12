@@ -45,27 +45,64 @@ Use Python with pandas and openpyxl to read both files:
 # Valid statuses: Submitted, Won, Lost, Cancelled, To Be Submitted, To Be Resubmitted, Resubmitted
 ```
 
-### 3. Scope Matching (with Source References)
+### 3. Scope Item Identification & Portfolio Matching
 
-If an RFP Analysis Summary is available, extract the scope disciplines and match against existing projects and proposals:
+This is the core analysis step. Extract **every individual scope item** from the RFP Analysis Summary and match each one against the full project portfolio and proposal pipeline.
 
-For each **discipline/scope area** in the RFP:
-- Find **projects** where the Project Name or Description contains matching keywords (e.g., "substation", "pipeline", "civil", "MEP", "HVAC")
-- Find **proposals** where the Project Title contains matching keywords
-- **Include the source reference** from the RFP Analysis Summary for each scope item (📄 [filename, page])
+#### 3a. Extract Scope Items
 
-Present as a **Scope Coverage Matrix**:
+From the RFP Analysis Summary, identify each distinct scope item. These are the individual deliverables, disciplines, or work packages the RFP requires. Examples: "132kV Substation Design", "Civil Works & Foundations", "SCADA/Telemetry System", "Construction Supervision", "BIM Modeling", "Environmental Impact Assessment", etc.
 
-| # | RFP Scope Area | RFP Source | Matching Projects | Matching Proposals | Experience Level |
-|---|---------------|------------|-------------------|--------------------|-----------------|
-| 1 | 132kV Substation Design | 📄 [TOR.pdf, p.8] | P19860102 (completed), P19860017 (in-progress) | T-008-1-2026 (Submitted) | STRONG — 3+ references |
-| 2 | SCADA/Telemetry | 📄 [TOR.pdf, p.15] | None | T-475-2025 (Won) | LIMITED — 1 reference |
+List every scope item — do not group or summarize them. Each item should be as specific as the RFP describes it.
 
-**Experience Level** classification:
-- **STRONG**: 3+ matching projects/proposals
-- **MODERATE**: 1-2 matching projects/proposals
-- **LIMITED**: Only proposals, no completed projects
-- **NONE**: No matching projects or proposals found
+#### 3b. Match Against Projects
+
+For each scope item, search the **projects export** for matches. Use keyword matching on the **Project Name** column (e.g., scope item "Substation Design" matches projects containing "substation", "132kV", "33kV", "switchgear", etc.). Also consider the project's sector and discipline context.
+
+For every match, record:
+- **Project Number** (e.g., P19860102)
+- **Project Name** (full name from the export)
+- **Client**
+- **Contract Value (AED)**
+- **Status** (in-progress, completed, etc.)
+
+#### 3c. Match Against Proposals
+
+For each scope item, search the **proposals export** for matches. Use keyword matching on the **Project Title** column. Also match by sector, discipline, and end user context.
+
+For every match, record:
+- **Proposal No** (e.g., T-008-1-2026)
+- **Project Title** (full title from the export)
+- **Client**
+- **Estimated Value (AED)**
+- **Status** (Won, Submitted, Lost, etc.)
+
+#### 3d. Scope Coverage Matrix
+
+Present the complete matching results. **Every matching project and proposal must show its number and name.**
+
+| # | RFP Scope Item | RFP Source | Matching Projects (No — Name) | Matching Proposals (No — Name) | Experience Level |
+|---|---------------|------------|-------------------------------|-------------------------------|-----------------|
+| 1 | 132kV Substation Design | 📄 [TOR.pdf, p.8] | **P19860102** — 400kV ICAD4 Substation (completed); **P19860017** — Al Nabbah 33kV Primary Substation (in-progress) | **T-008-1-2026** — 132kV GIS Substation for TRANSCO (Submitted) | STRONG |
+| 2 | Civil Works & Foundations | 📄 [TOR.pdf, p.12] | **P19860045** — Khazna Solar PV4 Substation Civil Works (in-progress); **P19860089** — Pedestrian Facilities ADM (in-progress) | **T-012-2026** — ADDC Substation Civil Package (Submitted) | STRONG |
+| 3 | SCADA / Telemetry | 📄 [TOR.pdf, p.15] | None | **T-475-2025** — SCADA Upgrade TRANSCO (Won) | LIMITED |
+| 4 | Environmental Impact Assessment | 📄 [TOR.pdf, p.20] | None | None | NONE |
+
+#### 3e. Experience Level Classification
+
+- **STRONG**: 3+ matching projects and/or proposals, with at least 1 completed project
+- **MODERATE**: 1-2 matching projects and/or proposals
+- **LIMITED**: Only proposals (no completed/active projects), or only 1 match total
+- **NONE**: No matching projects or proposals found — this is a gap
+
+#### 3f. Scope Coverage Summary
+
+After the matrix, provide:
+- Total scope items identified: X
+- STRONG coverage: X items (list them)
+- MODERATE coverage: X items (list them)
+- LIMITED coverage: X items (list them)
+- NONE / Gap: X items (list them) — **flag these as risks**
 
 ### 4. Client Relationship Analysis
 
