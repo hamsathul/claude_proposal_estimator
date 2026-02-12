@@ -18,8 +18,8 @@ Calculate commercial proposal amounts for engineering consultancy services based
 Before pricing, ensure the following are available:
 
 1. **Rate Card**: Read from the company's rate card file (Excel or CSV in the user's folder). Expected columns: Category, Hourly Rate (AED), Description.
-2. **Staff Requirements**: Output from the RFP analysis (positions, man-months, rate categories).
-3. **Gap Analysis**: Which positions are in-house, new hire, or third-party.
+2. **Staff Requirements**: Output from the RFP analysis (positions, man-months, rate categories). **Each position must carry its source reference** (file name + page/sheet/row from the original RFP documents).
+3. **Gap Analysis**: Which positions are in-house, new hire, or third-party. **Source references must be preserved** from the RFP Analysis Summary.
 
 ## Rate Card Structure
 
@@ -86,8 +86,9 @@ Grand Total = Subtotal + VAT
 
 Generate an Excel workbook with these sheets:
 1. **Rate Card** — Company rates (linked from source file)
-2. **Pricing Summary** — Detailed line-by-line with formulas
+2. **Pricing Summary** — Detailed line-by-line with formulas. **Include an "RFP Source" column** for each line item showing the original document reference (file name, page/sheet/row) where that position requirement was found. Carry these references from the RFP Analysis Summary.
 3. **Client Submission** — Clean summary matching client's BOQ format
+4. **Source Traceability** — A dedicated reference sheet listing every pricing line item with its source document, page/sheet, and the specific requirement text. This allows the user to verify every cost against the original RFP.
 
 Use Excel formulas (not hardcoded values) so the client can adjust inputs.
 

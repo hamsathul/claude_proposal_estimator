@@ -6,12 +6,14 @@ Analyze client RFP/BOQ packages, assess staffing gaps against company capabiliti
 
 This plugin automates the end-to-end proposal workflow for engineering consultancy firms bidding on infrastructure projects (water, power, roads, buildings) in the GCC region.
 
+**Every extracted item is traced back to its source** — file name, page number, sheet, and row — so you can verify any finding against the original RFP documents.
+
 **Workflow:**
 
-1. **Analyze RFP** — Parse client documents (PDF, Excel, Word) and extract scope by discipline, staffing requirements, and commercial terms
-2. **Gap Analysis** — Compare RFP requirements against your staff list to identify what's available in-house, what needs hiring, and what should be subcontracted
-3. **Estimate Proposal** — Apply your rate card to calculate pricing with Excel formulas, grouped by consultancy stage
-4. **Generate Proposal** — Create a complete proposal package: Excel pricing workbook, Word report, and PowerPoint presentation
+1. **Analyze RFP** — Parse client documents (PDF, Excel, Word) and extract scope by discipline, staffing requirements, and commercial terms — **with source references for every item**
+2. **Gap Analysis** — Compare RFP requirements against your staff list to identify what's available in-house, what needs hiring, and what should be subcontracted — **with RFP source traceability**
+3. **Estimate Proposal** — Apply your rate card to calculate pricing with Excel formulas, grouped by consultancy stage — **with a Source Traceability sheet linking costs to RFP requirements**
+4. **Generate Proposal** — Create a complete proposal package: Excel pricing workbook, Word report, and PowerPoint presentation — **with source references in documents and speaker notes**
 
 ## Commands
 
@@ -21,18 +23,32 @@ This plugin automates the end-to-end proposal workflow for engineering consultan
 | `/gap-analysis` | Compares RFP staffing needs vs. company capabilities |
 | `/estimate-proposal` | Calculates proposal pricing using your rate card |
 | `/generate-proposal` | Creates the full proposal package (Excel + Word + PowerPoint) |
+| `/portfolio-analysis` | Cross-references RFP scope against your project portfolio and proposal pipeline — win rates, financials, and profitability scenarios |
 
 ## Setup
 
-Before using the plugin, prepare three files in the `setup/` folder:
+**Every command will check for required setup data before starting and will ask you to provide any missing files.** Prepare your data in the `setup/` folder using the provided templates as a guide.
 
-| File | Description |
-|------|-------------|
-| `setup/org_capabilities.md` | Company profile, discipline capabilities, certifications, project references, and differentiators |
-| `setup/rate_card.csv` | Billing rates by staff category (hourly rates in AED) |
-| `setup/staff_list.csv` | Current team members, disciplines, experience, and availability |
+### Required Setup Files
 
-Each file includes a ready-to-fill template. Open them in the `setup/` folder and replace the sample data with your company's details.
+| File to Create | Template Provided | Description |
+|---------------|-------------------|-------------|
+| `setup/org_capabilities.md` | `org_capabilities_template.md` | Copy the template, fill in your company profile, disciplines, certifications, project references, and differentiators |
+| `setup/rate_card.csv` | (includes sample rates) | Replace sample rates with your actual billing rates by staff category (hourly, AED) |
+| `setup/staff_list.csv` | (includes sample staff) | Replace sample staff with your actual team — roles, disciplines, experience, availability |
+
+### Data Files (Provide Your Own Exports)
+
+| File to Provide | Template for Format | Description |
+|----------------|--------------------| -------------|
+| Projects export (`.xlsx`) | `projects_template.xlsx` | Export from your PM system — all current/past projects with contract values, actual costs, profit %, hours, and status |
+| Proposals export (`.xlsx`) | `proposals_template.xlsx` | Export from your BD system — all submitted proposals with estimated values, clients, win/loss status, and dates |
+
+Place the projects and proposals export files in your working folder alongside the RFP documents. The plugin will prompt you for them when needed.
+
+### Setup Verification
+
+Each command runs a **Step 0: Verify Setup Data** check before doing any work. If a required file is missing or still contains only sample/template data, the command will stop and tell you exactly what's needed. You won't lose any progress — just provide the file and re-run the command.
 
 ### Organization Capabilities Profile
 
@@ -61,14 +77,56 @@ Your current team and availability. Example columns:
 | Ahmed Khan | Senior PM | Project Management | 18 | Available Apr 2026 |
 | John Smith | Senior Civil Eng | Civil | 14 | Available |
 
+### Projects Export
+
+An export of all your current and past projects. The file should have a header row containing "Project Number" as the first column (the header row can be preceded by a summary section). Required columns:
+
+| Column | Description |
+|--------|-------------|
+| Project Number | Unique project identifier |
+| Project Name | Full project name |
+| Client | Client company name |
+| Type | Contract type (LS = Lump Sum, RB = Rate-Based) |
+| Contract Value (AED) | Total contract value |
+| Actual Costs (AED) | Costs incurred to date |
+| Forecast Costs (AED) | Projected total costs |
+| Contract Hours | Budgeted hours |
+| Actual Hours | Hours worked to date |
+| Invoiced Amount (AED) | Amount billed to client |
+| Expected Result (AED) | Expected profit/loss |
+| Profit % | Profit as percentage of contract value |
+| Status | Project status (in-progress, completed, blocked, draft, cancelled) |
+| Project Manager | Name of PM |
+
+### Proposals Export
+
+An export of all submitted and tracked proposals. Required columns:
+
+| Column | Description |
+|--------|-------------|
+| Proposal No | Unique proposal identifier |
+| Project Title | Full project/tender title |
+| Client | Client company name |
+| End User | Ultimate end user (if different from client) |
+| Type | Contract type (LS, RB, or RB and LS) |
+| Status | Proposal status (Submitted, Won, Lost, Cancelled, To Be Submitted, Resubmitted) |
+| Final Estimated Value | Estimated contract value in AED |
+| Currency | Currency code (default: AED) |
+| Received Date | Date RFP was received |
+| Submission Date | Date proposal was submitted |
+| Proposal Manager | Name of proposal lead |
+| Lead Discipline Engineer | Name of technical lead |
+
 ## Typical Usage
 
-1. Place the client's RFP documents (PDFs, Excel BOQs, Word files) in your folder
-2. Fill in your company data in the `setup/` folder (`org_capabilities.md`, `rate_card.csv`, `staff_list.csv`)
-3. Run `/analyze-rfp` to extract scope requirements
-4. Run `/gap-analysis` to check team coverage, compliance, and subcontractor strategy
-5. Run `/estimate-proposal` to calculate pricing
-6. Run `/generate-proposal` to create the full proposal package (with company profile, references, and differentiators pulled from capabilities)
+1. **Prepare setup data** — Fill in `setup/org_capabilities.md`, `setup/rate_card.csv`, and `setup/staff_list.csv` with your company's actual data (each command will verify these exist before starting)
+2. **Place RFP documents** — Put the client's RFP package (PDFs, Excel BOQs, Word files) in your working folder
+3. **Place data exports** — Add your projects and proposals Excel exports to the working folder (needed for `/portfolio-analysis`)
+4. Run `/analyze-rfp` to extract scope requirements
+5. Run `/gap-analysis` to check team coverage, compliance, and subcontractor strategy
+6. Run `/estimate-proposal` to calculate pricing
+7. Run `/generate-proposal` to create the full proposal package (Excel + Word + PowerPoint)
+8. Run `/portfolio-analysis` to see how this RFP aligns with your existing portfolio, check win rates, and model profitability scenarios
 
 ## Rate Categories
 
@@ -88,6 +146,16 @@ The plugin maps positions to these standard rate categories:
 - Rates are all-inclusive billing rates (no additional overhead/profit markup)
 - VAT at 5% per UAE Federal Tax Authority
 - Third-party positions can include a 10-15% markup
+
+## Source Referencing
+
+All outputs include full traceability back to the original RFP documents. The reference format is:
+
+- **PDFs**: `📄 [filename.pdf, p.12]`
+- **Excel**: `📄 [filename.xlsx, Sheet "Staff", Row 15]`
+- **Word**: `📄 [filename.docx, Section 3.2, p.8]`
+
+Every analysis output includes a **Source Document Index** at the top, listing all files analyzed. Every table includes a **Source column**. The Excel pricing workbook includes a dedicated **Source Traceability** sheet. Word reports include a **Source Reference Index appendix**. PowerPoint presentations carry source references in **speaker notes**.
 
 ## Author
 

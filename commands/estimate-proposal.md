@@ -7,11 +7,29 @@ Calculate the commercial proposal amount based on the company's rate card and th
 
 ## Steps
 
-1. Read the `proposal-pricing` skill from `${CLAUDE_PLUGIN_ROOT}/skills/proposal-pricing/SKILL.md` for the calculation methodology.
+### 0. Verify Setup Data
 
-2. Locate and read the company's rate card file. Look for files named like `rate_card.*`, `rates.*`, `billing_rates.*` in the user's folder (Excel or CSV). If not found, ask the user.
+Before starting pricing, check the `setup/` folder at `${CLAUDE_PLUGIN_ROOT}/setup/` for the following required files. **Ask the user to provide any missing files before proceeding.**
 
-   Expected rate card structure:
+| File | Purpose | Required |
+|------|---------|----------|
+| `rate_card.csv` | Billing rates by staff category | **Yes** |
+| `org_capabilities.md` | Company profile for proposal context | Optional |
+
+**Check procedure:**
+1. Look for `rate_card.csv` in `setup/`. If it only contains sample rates, tell the user: *"Please update the rate card with your actual billing rates. The current file appears to contain sample data."*
+2. Check the user's working folder for `RFP_Analysis_Summary.md` (from `/analyze-rfp`) and `Gap_Analysis_Report.md` (from `/gap-analysis`). If either is missing, tell the user which commands to run first.
+
+**Do not proceed until rate_card.csv and RFP_Analysis_Summary.md are available.**
+
+### 1. Read Skill
+
+Read the `proposal-pricing` skill from `${CLAUDE_PLUGIN_ROOT}/skills/proposal-pricing/SKILL.md` for the calculation methodology.
+
+### 2. Read Rate Card
+
+Read `rate_card.csv` from `${CLAUDE_PLUGIN_ROOT}/setup/`. Expected structure:
+
    | Category | Hourly Rate (AED) |
    |----------|-------------------|
    | PM S. Engr | 750 |
@@ -22,26 +40,39 @@ Calculate the commercial proposal amount based on the company's rate card and th
    | Eng S. Desg | 120 |
    | Eng Desg | 100 |
 
-3. Read the RFP Analysis Summary (`RFP_Analysis_Summary.md`) and Gap Analysis (`Gap_Analysis_Report.md`) from the user's folder.
+### 3. Read Analysis Outputs
 
-4. Map each required position to the appropriate rate category using the discipline mapping in `${CLAUDE_PLUGIN_ROOT}/skills/rfp-analysis/references/discipline-mapping.md`.
+Read the RFP Analysis Summary (`RFP_Analysis_Summary.md`) and Gap Analysis (`Gap_Analysis_Report.md`) from the user's folder.
 
-5. Calculate costs:
+### 4. Map Positions
+
+Map each required position to the appropriate rate category using the discipline mapping in `${CLAUDE_PLUGIN_ROOT}/skills/rfp-analysis/references/discipline-mapping.md`.
+
+### 5. Calculate Costs
+
+Calculate costs:
    - Convert hourly rates to monthly: Rate x 176 hours
    - For each position: Monthly Rate x Months x Quantity
    - Group by stage (Tender Prep, Design Review, Site Supervision, Warranty)
    - Apply third-party markup (10-15%) for subcontracted positions from gap analysis
    - Calculate subtotal, VAT (5%), and grand total
 
-6. Use the xlsx skill to create a professional Excel workbook with:
+### 6. Create Excel Workbook
+
+Use the xlsx skill to create a professional Excel workbook with:
    - **Sheet 1: Rate Card** — Source rates with hourly-to-monthly conversion formulas
-   - **Sheet 2: Pricing Summary** — Line-by-line breakdown with rate references, months, quantities, and formula-calculated totals
+   - **Sheet 2: Pricing Summary** — Line-by-line breakdown with rate references, months, quantities, and formula-calculated totals. **Include an "RFP Source" column** for each line item showing the original document reference (file name, page/sheet/row) where that position requirement was found. Carry these references from the RFP Analysis Summary.
    - **Sheet 3: Client Submission** — Clean BOQ summary matching the client's required format
+   - **Sheet 4: Source Traceability** — A dedicated reference sheet listing every pricing line item with its source document, page/sheet, and the specific requirement text. This allows the user to verify every cost against the original RFP.
 
    Use Excel FORMULAS (not hardcoded values). Link rates from the Rate Card sheet. All yellow-highlighted cells should be editable inputs.
 
-7. Save as `Proposal_Cost_Estimate_AED.xlsx` in the user's folder.
+### 7. Save Output
 
-8. Present a summary to the user showing stage subtotals and grand total.
+Save as `Proposal_Cost_Estimate_AED.xlsx` in the user's folder.
+
+### 8. Present Summary
+
+Present a summary to the user showing stage subtotals and grand total. **Include a note that source references are available in the "RFP Source" column on the Pricing Summary sheet and the Source Traceability sheet.**
 
 $ARGUMENTS

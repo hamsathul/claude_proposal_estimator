@@ -99,9 +99,72 @@ Extract from BOQ and annexures:
 - Mandatory local presence (UAE office, staff based in-country)
 - Past project reference requirements
 
+## Source Referencing (MANDATORY)
+
+Every extracted item MUST include a source reference linking it back to the original document. This ensures full traceability from analysis through to the final proposal.
+
+### Reference Format
+
+Use this inline format for every extracted data point:
+
+```
+📄 [filename.pdf, p.12]
+```
+
+For Excel files, reference the sheet name and row:
+```
+📄 [BOQ_Schedule.xlsx, Sheet "Staffing", Row 15]
+```
+
+For Word documents, reference the section or page:
+```
+📄 [Scope_of_Work.docx, Section 3.2, p.8]
+```
+
+### Tracking Rules
+
+1. **During extraction**: As you read each file, record the source file name and page number (for PDFs), sheet name and row (for Excel), or section/page (for Word) for every piece of information extracted.
+2. **In tables**: Add a **Source** column to all tables (staffing, compliance, commercial terms, etc.) containing the file reference.
+3. **In narrative sections**: Append the reference inline after the relevant statement, e.g.:
+   > The project duration is 36 months 📄 [TOR_Document.pdf, p.5]
+4. **Multiple sources**: When an item is confirmed across multiple documents, list all references:
+   > 📄 [TOR_Document.pdf, p.5] [BOQ_Summary.xlsx, Sheet "Overview", Row 3]
+5. **Ambiguous items**: When information is unclear or contradictory between sources, flag both references so the user can verify.
+
+### Reference in Staffing Tables
+
+All staffing requirement tables must include a Source column:
+
+| # | Position | Qty | Man-Months | Qualifications | Source |
+|---|----------|-----|------------|----------------|--------|
+| 1 | Project Manager | 1 | 36 | BSc + 15yr exp | 📄 [BOQ.xlsx, Sheet "Staff", Row 5] |
+| 2 | Senior Civil Eng | 2 | 24 | BSc + 10yr exp | 📄 [TOR.pdf, p.23] |
+
+### Reference in Commercial Terms
+
+| Term | Details | Source |
+|------|---------|--------|
+| Payment | Monthly on timesheet | 📄 [Conditions.pdf, p.14] |
+| LD Rate | 0.5% per week, max 10% | 📄 [Conditions.pdf, p.18] |
+
+### Saving the Source Index
+
+When saving the `RFP_Analysis_Summary.md`, include a **Source Document Index** at the top listing all documents analyzed:
+
+```markdown
+## Source Document Index
+| # | File Name | Type | Pages/Sheets | Key Content |
+|---|-----------|------|--------------|-------------|
+| 1 | TOR_Document.pdf | PDF | 45 pages | Scope of Work, Terms of Reference |
+| 2 | BOQ_Schedule.xlsx | Excel | 3 sheets | Staffing table, BOQ pricing |
+| 3 | Special_Conditions.docx | Word | 12 pages | Commercial terms, compliance |
+```
+
+This index allows the user to quickly locate the original source documents for verification.
+
 ## Output Format
 
-Present findings as a structured summary with clear sections. Use tables for staffing requirements. Flag any ambiguous or missing items that need clarification.
+Present findings as a structured summary with clear sections. Use tables for staffing requirements (including Source column). Flag any ambiguous or missing items that need clarification, always referencing the source document and location.
 
 ## Organization Capabilities
 
